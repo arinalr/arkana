@@ -34,7 +34,7 @@ class StockMove(models.Model):
             qty -= move.returned_move_ids._get_lot_returnable_qty(lot_id)
         return qty
 
-    def _action_assign(self):
+    def _action_assign(self, force_qty=False):
         if self.env.context.get("skip_assign_move", False):
             # Avoid assign stock moves allowing create stock move lines manually
             return
